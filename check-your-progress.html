@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Patient Tracking Dashboard</title>
+
+    <style>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background: #eef0f4;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 30px;
+}
+
+.dashboard {
+    width: 100%;
+    max-width: 950px;
+}
+
+.top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 30px;
+}
+
+
+
+.filter {
+    padding: 14px 18px;
+    background: white;
+    border: 1px solid #ddd;
+    border-radius: 12px;
+    font-size: 15px;
+    cursor: pointer;
+}
+
+.cards {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 28px;
+}
+
+#cardone, #cardtwo, #cardthree{
+    transition: transform 0.5s ease,
+                box-shadow 0.5s ease;
+    background: white;
+    border-radius: 22px;
+    overflow: hidden;
+    box-shadow: 0 5px 12px rgba(0, 0, 0, 0.08);
+    border: 1px solid #e5e5e5;
+    width:450px;
+    height:400px;
+}
+#cardone:hover,
+#cardtwo:hover,
+#cardthree:hover{
+    box-shadow: 0 5px 15px gray;
+}
+@keyframes blink {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+.card-animate {
+    animation: blink 1s ease;
+}
+
+
+.card-header {
+    padding: 20px 26px;
+    font-size: 22px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.green {
+    background: lightgreen;
+    color: darkgreen;
+}
+
+.yellow {
+    background: lightyellow;
+    color: darkyellow;
+}
+
+.pink {
+    background: lightpink;
+    color: magenta;
+}
+
+.purple {
+    background: #efdafa;
+    color: #80518e;
+}
+
+.card-body {
+    padding: 24px 26px 28px;
+    position: relative;
+}
+
+.number {
+    font-size: 57px;
+    margin-bottom: 35px;
+}
+
+
+.badge {
+    position: absolute;
+    right: 26px;
+    bottom: 28px;
+    padding: 10px 14px;
+    border-radius: 9px;
+    font-size: 14px;
+    font-weight: bold;
+}
+
+.up {
+    background: lightgray;
+    color: green;
+}
+
+.down {
+    background: lightgray;
+    color: red;
+}
+
+
+
+    .top {
+        align-items: flex-start;
+        gap: 15px;
+        flex-direction: column;
+    }
+
+    
+    
+
+    .card-header {
+        font-size: 19px;
+    }
+
+    
+    
+    
+    
+    
+
+
+    </style>
+</head>
+
+<body>
+
+    <div class="dashboard">
+
+        <div class="top">
+            <h1>My coding progress</h1>
+
+            <select class="filter" id="selection">
+                <option value="week"> in Frontend</option>
+                <option value="month">in Backend</option>
+                <option value="year">in Database</option>
+            </select>
+        </div>
+
+        <div class="cards">
+            <h1>My Goal is to Make 10 Best Project in 2026th Year</h1>
+
+            <!-- card no.1 -->
+
+            <div id="cardone">
+                <div class="card-header green">
+                    <span>🎨</span>
+                    <span>Frontend</span>
+                </div>
+
+                <div class="card-body">
+                    <div class="number">The Ultimate progress</div>
+
+                    <div class="description"><br>
+                <label for="goal">Goal of 2026</label><br>
+                    <input type="range" name="range" min="0" max="10">
+                    </div>
+
+                    <span class="badge up">↑ 20%</span>
+                </div>
+            </div>
+
+
+            <!-- card no.2 -->
+
+            <div id="cardtwo">
+                <div class="card-header yellow">
+                    <span>🎭</span>
+                    <span>backend</span>
+                </div>
+
+                <div class="card-body">
+                    <div class="number">The Ultimate progress</div>
+
+                    <label for="progress">Goal of 2026</label><br>
+                    <input type="range" name="progressbar" min="0" max="10">
+                    
+                    
+
+                    <span class="badge down">↓ 12%</span>
+                </div>
+            </div>
+
+
+            <!-- card no. third-->
+
+            <div id
+            ="cardthree">
+                <div class="card-header pink">
+                    <span>🛢️</span>
+                    <span>Database</span>
+                </div>
+
+                <div class="card-body">
+                    <div class="number"> The Ultimate progress</div>
+
+                    <label for="progressbar">Goal of 2026</label><br>
+                        
+                    <input type="range" name="progress" min="0" max="100">
+
+                    <span class="badge up">↑ 27%</span>
+                </div>
+            </div>  
+
+
+
+        </div>
+
+    </div>
+
+<script>
+    
+    let selector = document.getElementById("selection");
+
+selector.addEventListener("change", function () {
+
+    let selectedvalue = selector.value;
+
+    let cardone = document.getElementById("cardone");
+    let cardtwo = document.getElementById("cardtwo");
+    let cardthree = document.getElementById("cardthree");
+
+    cardone.style.display = "none";
+    cardtwo.style.display = "none";
+    cardthree.style.display = "none";
+
+    let card;
+
+    if (selectedvalue === "week") {
+        card = cardone;
+    }
+    else if (selectedvalue === "month") {
+        card = cardtwo;
+    }
+    else if (selectedvalue === "year") {
+        card = cardthree;
+    }
+
+    if (card) {
+        card.style.display = "block";
+
+        card.classList.remove("card-animate");
+
+        void card.offsetWidth;
+
+        card.classList.add("card-animate");
+    }
+
+});
+</script>
+
+
+
+</body>
+</html>
